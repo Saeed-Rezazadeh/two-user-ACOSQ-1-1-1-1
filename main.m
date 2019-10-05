@@ -58,7 +58,7 @@ for j = 1 : length(rho)
             i = i_index(k) ;
             
             %% Load Data
-            % Initialize partitions are obtained from half-duplex ACOSQ for one-way
+            % Initial partitions are obtained from half-duplex ACOSQ for one-way
             % system with side information at the decoder. Then the
             % half-duplex design is used to initialize the two-user ACOSQ
             numLevel = 2 ;
@@ -72,7 +72,7 @@ for j = 1 : length(rho)
             f = zeros(length(joint_T) , length(joint_T)) ;
             u_1 = joint_T(: , 1) ;
             
-            % Compute the source pdf.
+            % Compute the source pdf f_u_1_u_2.
             for u_2_index = 1 : length(joint_T)
                 u_2 = joint_T(u_2_index , 3) ;
                 f(: , u_2_index ) = 1 ./ (2 .* pi .* sqrt (1 - p .^ 2)) .* exp (-1 ./ (2 .* (1 - p .^ 2)) .* (u_1 .^ 2 + u_2 .^ 2 - 2 .* p .* u_1 .* u_2)) ;
@@ -91,7 +91,7 @@ for j = 1 : length(rho)
             [Probability] = channel_statistics (MODE  , epsilon_1 , epsilon_2 , numLevel , i , delta) ;
             
             %% COSQTWC for step #1
-            % Design a 1-bit COSQ for the sources with pdf computed in line
+            % Design a 1-bit COSQ for the sources with joint pdf computed in line
             % 58.
             [SDR_rate_1(h , j , k) , SDR_1_rate_1(h , j , k) , SDR_2_rate_1(h , j , k) , joint_T_rate_1 , codebook_user_1 , codebook_user_2] =...
                 COSQTWC_1 (p , Probability , joint_T , width , f) ;
