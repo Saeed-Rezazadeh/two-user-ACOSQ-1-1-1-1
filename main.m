@@ -62,7 +62,7 @@ for j = 1 : length(rho)
             % system with side information at the decoder. Then the
             % half-duplex design is used to initialize the two-user ACOSQ
             numLevel = 2 ;
-            Data = ['Input\T_k_' num2str(k) '_delta_' num2str(delta) '_p_0_' num2str(10 * p)] ;
+            Data = ['Inputs\T_k_' num2str(k) '_delta_' num2str(delta) '_p_0_' num2str(10 * p)] ;
             load (Data) ;
             
             width(1) = T(2 , 1) - T (1 , 1) ;
