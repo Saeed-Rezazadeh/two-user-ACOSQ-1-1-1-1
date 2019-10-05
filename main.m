@@ -25,24 +25,24 @@ MODE = 1 ; % 1 = Orthogonal  2 = Additive 3 = Multiplicative
 
 
 %% Initialize parameters
-final_SDR_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ; 
-final_SDR_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ; 
-final_SDR_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ; 
-final_SDR_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ; 
+final_SDR_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ;
+final_SDR_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ;
+final_SDR_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ;
+final_SDR_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 
-SDR_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ;  
+SDR_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_1_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_2_rate_1 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 
-SDR_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ;  
+SDR_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_1_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_2_rate_2 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 
-SDR_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ;  
+SDR_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_1_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_2_rate_3 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 
-SDR_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ;  
+SDR_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_1_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 SDR_2_rate_4 = zeros (length(Delta) , length(rho) , length(i_index)) ;
 
@@ -92,7 +92,7 @@ for j = 1 : length(rho)
             
             %% COSQTWC for step #1
             % Design a 1-bit COSQ for the sources with joint pdf computed in line
-            % 58.
+            % 78.
             [SDR_rate_1(h , j , k) , SDR_1_rate_1(h , j , k) , SDR_2_rate_1(h , j , k) , joint_T_rate_1 , codebook_user_1 , codebook_user_2] =...
                 COSQTWC_1 (p , Probability , joint_T , width , f) ;
             fprintf (FileID , '\n i = %4.2f \n' , i ) ;
@@ -123,7 +123,7 @@ for j = 1 : length(rho)
             T_u_1 = T(: , [1 2 3 4]) ;
             T_u_2 = T(: , [1 2 3 4]) ;
             % Design a 1-bit COSQ for the joint source pdf computed in Line
-            % 95.
+            % 117.
             [SDR_rate_2(h , j , k)  , SDR_1_rate_2(h , j , k)  , SDR_2_rate_2(h , j , k)  , joint_T_rate_2 , codebook_user_1 , codebook_user_2] ...
                 = COSQTWC_2 (f_u_1_u_2_given_y_11_y_21 , p , ...
                 T_u_1 , T_u_2 , Pr_z_1i_given_z_1i_1 , Pr_z_2i_given_z_2i_1 , ...
@@ -163,7 +163,7 @@ for j = 1 : length(rho)
             T_u_1 = T(: , [1 3 4 5 6 7 8]) ;
             T_u_2 = T(: , [1 3 4 5 6 7 8]) ;
             % Design a 1-bit COSQ for the joint source pdf computed in Line
-            % 136.
+            % 158.
             [SDR_rate_3(h , j , k) , SDR_1_rate_3(h , j , k) , SDR_2_rate_3(h , j , k) , joint_T_rate_3 , codebook_user_1 , codebook_user_2] = ...
                 COSQTWC_3(p , f_u_1_u_2_given_y_11_y_12_y_21_y_22 , T_u_1 , T_u_2...
                 , Pr_z_1i_given_z_1i_1 , Pr_z_2i_given_z_2i_1 , P_bit_2 ...
@@ -207,7 +207,7 @@ for j = 1 : length(rho)
             T_u_1 = T(: , [1 5 6 7 8 9 10 11 12 13 14 15 16]) ;
             T_u_2 = T(: , [1 5 6 7 8 9 10 11 12 13 14 15 16]) ;
             % Design a 1-bit COSQ for the joint source pdf computed in Line
-            % 177.
+            % 199.
             [SDR_rate_4(h , j , k) , SDR_1_rate_4(h , j , k) , SDR_2_rate_4(h , j , k) , joint_T_rate_4 , codebook_user_1 , codebook_user_2] = ...
                 COSQTWC_4(p , f_u_1_u_2_y_11_y_12_y_13_y_21_y_22_y_23 ...
                 , T_u_1 , T_u_2 , Pr_z_1i_given_z_1i_1 , Pr_z_2i_given_z_2i_1  ...
@@ -277,3 +277,4 @@ for j = 1 : length(rho)
     end
     fprintf (FileID , '\n p = %4.2f \n' , p ) ;
 end
+
